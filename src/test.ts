@@ -1,8 +1,16 @@
+import { HttpsProxyAgent } from 'https-proxy-agent';
+import fetch2 from 'node-fetch';
 
-async function test()
-{
-    let res = await fetch("https://api.64clouds.com/v1/");
-    let data = await res.json();
-}
+//construct proxy URL
+const proxyUrl = `http://localhost:10809`;
+//create proxy agent
+const proxyAgent = new HttpsProxyAgent(proxyUrl);
 
-test();
+//make request using random proxy from array
+const response = await fetch2("https://www.google.com", { agent: proxyAgent });
+
+
+console.log('response: ', await response.text());
+
+let res = await fetch2("https://api.64clouds.com/v1/", { agent: proxyAgent });
+let data = await res.json();

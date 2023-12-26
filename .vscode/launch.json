@@ -13,8 +13,8 @@
             ],
             "runtimeArgs": [
                 "--nolazy",
-                "-r",
-                "ts-node/register/transpile-only",
+                "--loader",
+                "ts-node/esm",
             ],
             "cwd": "${workspaceFolder}",
             "internalConsoleOptions": "openOnSessionStart"
